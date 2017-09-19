@@ -5,13 +5,13 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="success">
+  <ion-navbar color="light">
     <ion-title>Log In</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content success>
-  <form [formGroup]="loginForm" (submit)="loginUser" novalidate>
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
     <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input formControlName="email" type="email" placeholder="Enter email address"
@@ -30,8 +30,7 @@
       <p>Password should contain more than 6 characters!</p>
     </ion-item>
     <button ion-button block type="submit" [disabled]="!loginForm.valid">Log In</button>
-
-    <button ion-button block clear (click)="goToSignUp()">Create New Account.</button>
-    <button ion-button block clear (click)="goToReset()">Forgot Password?</button>
   </form>
+  <button ion-button block clear (click)="goToSignUp()">Create New Account.</button>
+  <button ion-button block clear (click)="goToReset()">Forgot Password?</button>
 </ion-content>

@@ -45,7 +45,7 @@ export class LoginPage {
         error => {
           this.loading.dismiss().then( () => {
             const alert:Alert = this.alertCtrl.create({
-              message: error.message,
+              message: "Email or password incorrect",
               buttons: [{ text: "Ok", role: 'cancel'}]
             });
             alert.present()
