@@ -29,7 +29,7 @@ export class ProfileProvider {
     return this.userProfile.update({ firstName, lastName });
   }
 
-  updateDatabase(birthDate:string):firebase.Promise<any>{
+  updateDOB(birthDate:string):firebase.Promise<any>{
     return this.userProfile.update({ birthDate });
   }
 
