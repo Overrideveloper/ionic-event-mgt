@@ -8,4 +8,11 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
   constructor(public navCtrl: NavController) {}
 
+  goToCreate():void{
+    this.navCtrl.push('EventCreatePage');
+  }
+
+  goToList():void{
+    this.navCtrl.push('EventListPage');
+  }
 }
