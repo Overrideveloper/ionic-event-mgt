@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, ActionSheet, ActionSheetController, Alert, AlertController } from 'ionic-angular';
+import { EventProvider } from '../../providers/event/event';
 
 /**
  * Generated class for the EventListPage page.
@@ -14,12 +15,64 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'event-list.html',
 })
 export class EventListPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public eventList: Array<any>;
+  constructor(public navCtrl: NavController, public eventProvider: EventProvider,
+    public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EventListPage');
+    this.eventProvider.listEvent().on('value', eventListSnapshot => {
+      this.eventList = [];
+      eventListSnapshot.forEach( snap => {
+        this.eventList.push({
+          id: snap.key,
+          name: snap.val().name,
+          price: snap.val().price,
+          cost: snap.val().cost
+        });
+        return false;
+      });
+    });
+  }
+
+  showOptions(eventId):void{
+    let options:ActionSheet = this.actionSheetCtrl.create({
+      title: 'What do you want to do?',
+      buttons: [
+        {
+          text: 'Edit Event',
+          handler: () => {
+            this.navCtrl.push('EventEditPage', { 'eventId': eventId });
+          }
+        },
+        {
+          text: 'Delete Event',
+          handler: () => {
+            let alert:Alert = this.alertCtrl.create({
+              message: 'Delete this event?',
+              buttons:[
+                {
+                  text: 'Cancel',
+                  role: 'cancel'
+                },
+                {
+                  text: 'Delete',
+                  handler: () => {
+                    this.eventProvider.deleteEvent(eventId);
+                  }
+                }
+              ]
+            });
+            alert.present();
+          }
+        },
+        {
+          text: 'Event Details',
+          handler: () => { this.navCtrl.push('EventDetailPage', { 'eventId': eventId }); }
+        }
+      ]
+    });
+    options.present();
   }
 
 }
