@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ActionSheet, ActionSheetController, Alert, AlertController } from 'ionic-angular';
 import { EventProvider } from '../../providers/event/event';
+import { HomePage } from '../../pages/home/home';
 
 /**
  * Generated class for the EventListPage page.
@@ -28,7 +29,7 @@ export class EventListPage {
           id: snap.key,
           name: snap.val().name,
           price: snap.val().price,
-          cost: snap.val().cost
+          date: snap.val().date
         });
         return false;
       });
@@ -58,7 +59,9 @@ export class EventListPage {
                 {
                   text: 'Delete',
                   handler: () => {
-                    this.eventProvider.deleteEvent(eventId);
+                    this.eventProvider.deleteEvent(eventId).then( () => {
+                      this.navCtrl.setRoot(HomePage);
+                    });
                   }
                 }
               ]
@@ -75,4 +78,7 @@ export class EventListPage {
     options.present();
   }
 
+  goToCreate():void{
+    this.navCtrl.setRoot('EventCreatePage');
+  }
 }

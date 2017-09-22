@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EventProvider } from '../../providers/event/event';
+import { EventListPage } from '../../pages/event-list/event-list';
 
 /**
  * Generated class for the EventCreatePage page.
@@ -23,7 +24,7 @@ export class EventCreatePage {
     :void{
       this.eventProvider.createEvent(eventName, eventDate, eventPrice, eventCost)
         .then( newEvent => {
-          this.navCtrl.pop();
+          this.navCtrl.setRoot(EventListPage);
         })
     }
 }
