@@ -1,6 +1,6 @@
 {
-  "name": "EventManager",
-  "app_id": "",
+  "name": "Plantastic",
+  "app_id": "fe4de6ea",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
