@@ -63,9 +63,44 @@ public eventListRef: firebase.database.Reference;
       return this.eventListRef.child(eventId).update({ cost: eventCost });
     }
 
-    addGuest(eventId:string, guestName:string, eventPrice:number):firebase.Promise<any>{
+    addGuest(eventId:string, guestName:string, eventPrice:number, guestPicture:string = null):firebase.Promise<any>{
       return this.eventListRef.child(`${eventId}/guestList`).push({
-        name: guestName
-      });
+        name: guestName }).then( newGuest => {
+          this.eventListRef.child(eventId).transaction( event => {
+            event.revenue += eventPrice;
+            return event;
+          }); 
+          if(guestPicture != null){
+            firebase.storage().ref(`/guestProfile/${newGuest.key}/profileImage.png`)
+              .putString(guestPicture, 'base64', { contentType: 'image/png' })
+                .then( savedPicture => {
+                  this.eventListRef.child(`${eventId}/guestList/${newGuest.key}/profileImage`)
+                    .set(savedPicture.downloadURL);
+              });
+          }
+        });
     }
+
+    guestDetails(eventId:string, guestId:string):firebase.database.Reference{
+      return this.eventListRef.child(`${eventId}/guestList/${guestId}`);
+    }
+
+    deleteGuest(eventId:string, guestId:string):firebase.Promise<any>{
+      return this.eventListRef.child(`${eventId}/guestList/${guestId}`).remove();
+    }
+
+    updateGuestName(eventId:string, guestId:string, guestName:string):firebase.Promise<any>{
+      return this.eventListRef.child(`${eventId}/guestList/${guestId}`).update({ name: guestName });
+    }
+
+    updateGuestImage(eventId:string, guestId:string, guestPicture:string = null):void{
+       if(guestPicture != null){
+        firebase.storage().ref(`/guestProfile/${guestId}/profileImage.png`)
+          .putString(guestPicture, 'base64', { contentType: 'image/png' })
+            .then( savedPicture => {
+              this.eventListRef.child(`${eventId}/guestList/${guestId}/profileImage`)
+                .set(savedPicture.downloadURL);
+          });
+      }
+    } 
 }
