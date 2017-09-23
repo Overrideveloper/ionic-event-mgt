@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ActionSheet, ActionSheetController, Alert, AlertController } from 'ionic-angular';
 import { EventProvider } from '../../providers/event/event';
-import { HomePage } from '../../pages/home/home';
 
 /**
  * Generated class for the EventListPage page.
