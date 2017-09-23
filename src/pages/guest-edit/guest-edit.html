@@ -5,14 +5,34 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>guest-edit</ion-title>
+    <ion-title>Edit Guest: {{currentGuest?.name}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-list>
+    <ion-list-header>Guest Information</ion-list-header>
+      <ion-item (click)="imageOptions()">
+        <ion-grid>
+          <div text-center>
+            <img src={{currentGuest?.profileImage}} width="320" height="480">
+          </div>
+        </ion-grid>
+      </ion-item>
 
+      <ion-item (click)="updateName()">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>Name</ion-col>
+          <ion-col col-6 *ngIf="currentGuest?.name">
+            {{ currentGuest?.name }}
+          </ion-col>
+          <ion-col col-6 class="placeholder-profile" *ngIf="!currentGuest?.name">
+            <span>Tap here to edit.</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>
