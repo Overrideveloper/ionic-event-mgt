@@ -7,6 +7,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>{{ currentEvent?.name }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToGuests()">
+        <ion-icon name="people"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

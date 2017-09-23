@@ -11,35 +11,36 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label stacked>Event Name</ion-label>
-    <ion-input [(ngModel)]="eventName" type="text"
-    placeholder="What's your event's name?">
-    </ion-input>
-  </ion-item>
+  <form [formGroup]="formCreate">
+    <ion-item>
+      <ion-label stacked>Event Name</ion-label>
+      <ion-input formControlName="name" [(ngModel)]="eventName" type="text" placeholder="What's your event's name?">
+      </ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label stacked>Event Price</ion-label>
-    <ion-input [(ngModel)]="eventPrice" type="number"
-    placeholder="How much will the guests pay?">
-    </ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label stacked>Event Price</ion-label>
+      <ion-input formControlName="price" [(ngModel)]="eventPrice" type="number"
+      placeholder="How much will the guests pay?">
+      </ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label stacked>Event Cost</ion-label>
-    <ion-input [(ngModel)]="eventCost" type="number"
-    placeholder="How much are you spending?">
-    </ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label stacked>Event Cost</ion-label>
+      <ion-input formControlName="cost" [(ngModel)]="eventCost" type="number"
+      placeholder="How much are you spending?">
+      </ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Event Date</ion-label>
-    <ion-datetime displayFormat="D MMM, YY" pickerFormat="DD MMM YYYY"
-    [(ngModel)]="eventDate">
-    </ion-datetime>
-  </ion-item>
+    <ion-item>
+      <ion-label>Event Date</ion-label>
+      <ion-datetime formControlName="date" displayFormat="D MMM, YY" pickerFormat="DD MMM YYYY"
+      [(ngModel)]="eventDate">
+      </ion-datetime>
+    </ion-item>
 
-  <button ion-button block (click)="createEvent(eventName, eventDate, eventPrice, eventCost)">
-  Create Event
-  </button>
+    <button ion-button block [disabled]="!formCreate.valid" (click)="createEvent(eventName, eventDate, eventPrice, eventCost)">
+    Create Event
+    </button>
+  </form>
 </ion-content>

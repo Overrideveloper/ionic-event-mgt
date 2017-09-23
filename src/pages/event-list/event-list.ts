@@ -60,7 +60,7 @@ export class EventListPage {
                   text: 'Delete',
                   handler: () => {
                     this.eventProvider.deleteEvent(eventId).then( () => {
-                      this.navCtrl.setRoot(HomePage);
+                      this.navCtrl.setRoot(EventListPage);
                     });
                   }
                 }
@@ -79,6 +79,6 @@ export class EventListPage {
   }
 
   goToCreate():void{
-    this.navCtrl.setRoot('EventCreatePage');
+    this.navCtrl.push('EventCreatePage');
   }
 }
