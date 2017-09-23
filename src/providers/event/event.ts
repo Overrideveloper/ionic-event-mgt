@@ -26,12 +26,17 @@ public eventListRef: firebase.database.Reference;
         name: eventName,
         date: eventDate,
         price: eventPrice * 1,
-        cost: eventCost * 1
+        cost: eventCost * 1,
+        revenue: eventCost * -1
       });
     }
 
     listEvent():firebase.database.Reference{
       return this.eventListRef;
+    }
+
+    listGuests(eventId:string):firebase.database.Reference{
+      return this.eventListRef.child(`${eventId}/guestList`);
     }
 
     eventDetails(eventId:string):firebase.database.Reference{
@@ -58,4 +63,9 @@ public eventListRef: firebase.database.Reference;
       return this.eventListRef.child(eventId).update({ cost: eventCost });
     }
 
+    addGuest(eventId:string, guestName:string, eventPrice:number):firebase.Promise<any>{
+      return this.eventListRef.child(`${eventId}/guestList`).push({
+        name: guestName
+      });
+    }
 }
