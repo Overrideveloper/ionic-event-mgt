@@ -17,7 +17,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let guest of guestList" >
+    <ion-item *ngFor="let guest of guestList" (click)="goToOptions(guest.id)" >
       <h2>{{guest?.name}}</h2>
     </ion-item>
   </ion-list>
