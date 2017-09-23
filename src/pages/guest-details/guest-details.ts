@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { EventProvider } from '../../providers/event/event';
 
 /**
  * Generated class for the GuestDetailsPage page.
@@ -14,12 +15,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'guest-details.html',
 })
 export class GuestDetailsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public eventId:string;
+  public guestId:string;
+  public currentGuest:any = {};
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public eventProvider: EventProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad GuestDetailsPage');
+    this.eventId = this.navParams.get('eventId');
+    this.guestId = this.navParams.get('guestId');
+    this.eventProvider.guestDetails(this.eventId, this.guestId)
+      .on('value', guestSnapshot => {
+        this.currentGuest = guestSnapshot.val();
+      });
   }
 
 }

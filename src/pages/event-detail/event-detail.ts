@@ -29,14 +29,8 @@ export class EventDetailPage {
       });
   }
 
-  /*addGuest(guestName:string):void{
-    this.eventProvider.addGuest(this.currentEvent.id, guestName, this.currentEvent.price)
-      .then( newGuest => {
-        this.guestName = '';
-      })}*/
-
-    goToGuests():void{
-      this.navCtrl.push('GuestListPage', { 'eventId': this.currentEvent.id, 'eventPrice': this.currentEvent.price });
-    }
-  
+  goToGuests():void{
+    this.navCtrl.push('GuestListPage', { 'eventId': this.currentEvent.id, 'eventPrice': this.currentEvent.price });
   }
+  
+}

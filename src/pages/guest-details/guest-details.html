@@ -5,14 +5,20 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>guest-details</ion-title>
+    <ion-title>{{ currentGuest?.name }}'s Details</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
+  <ion-card>
+    <ion-card-header>
+      {{ currentGuest?.name }}
+    </ion-card-header>
+    <ion-card-content>
+      <div text-center>
+        <img src={{currentGuest?.profileImage}} width="320" height="480">
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
