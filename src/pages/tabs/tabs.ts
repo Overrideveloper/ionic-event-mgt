@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
 import { EventListPage } from '../event-list/event-list';
+import { AboutPage } from '../about/about';
 import { IonicPage } from 'ionic-angular';
 /**
  * Generated class for the TabsPage page.
@@ -19,6 +20,7 @@ export class TabsPage {
   tab1Root :any = HomePage;
   tab2Root :any = ProfilePage;
   tab3Root :any = EventListPage;
+  tab4Root :any = AboutPage;
 
   constructor(){}
 }
