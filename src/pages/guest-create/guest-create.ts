@@ -58,7 +58,6 @@ export class GuestCreatePage {
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       allowEdit: true,
-      encodingType: this.camera.EncodingType.PNG,
       targetWidth: 500,
       targetHeight: 500,
       saveToPhotoAlbum: true
