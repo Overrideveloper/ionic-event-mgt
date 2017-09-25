@@ -46,7 +46,7 @@ export class GuestCreatePage {
       targetHeight: 500,
       saveToPhotoAlbum: true
     }).then(imageData => {
-      this.guestPicture = "data:image/png;base64," + imageData;
+      this.guestPicture = imageData;
     }, error =>{
       console.log("ERROR: " + JSON.stringify(error));
     });
@@ -62,7 +62,7 @@ export class GuestCreatePage {
       targetHeight: 500,
       saveToPhotoAlbum: true
     }).then(imageData => {
-      this.guestPicture = "data:image/png;base64," + imageData;
+      this.guestPicture = imageData;
     }, error =>{
       console.log("ERROR: " + JSON.stringify(error));
     });
