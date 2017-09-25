@@ -38,11 +38,11 @@ export class GuestCreatePage {
   takePicture():void{
     this.camera.getPicture({
       quality : 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.CAMERA,
       allowEdit: true,
-      encodingType: this.camera.EncodingType.PNG,
-      targetWidth: 500,
+      correctOrientation: true,
+      targetWidth: 500,   
       targetHeight: 500,
       saveToPhotoAlbum: true
     }).then(imageData => {
@@ -55,9 +55,10 @@ export class GuestCreatePage {
   selectPicture():void{
     this.camera.getPicture({
       quality : 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       allowEdit: true,
+      correctOrientation: true,
       targetWidth: 500,
       targetHeight: 500,
       saveToPhotoAlbum: true
