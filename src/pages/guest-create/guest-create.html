@@ -22,7 +22,6 @@
     </button>
 </ion-buttons>
   <span *ngIf="guestPicture">Picture selected!</span>
-  <img src="guestImage" />
   <button ion-button color="primary" block (click)="addGuest(guestName)" [disabled]="!guestName">
     Add Guest
   </button>

@@ -35,12 +35,14 @@ export class GuestCreatePage {
     });
   }
 
+
   takePicture():void{
     this.camera.getPicture({
       quality : 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.CAMERA,
       allowEdit: true,
+      mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true,
       targetWidth: 500,   
       targetHeight: 500,
@@ -55,9 +57,10 @@ export class GuestCreatePage {
   selectPicture():void{
     this.camera.getPicture({
       quality : 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       allowEdit: true,
+      mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true,
       targetWidth: 500,
       targetHeight: 500,

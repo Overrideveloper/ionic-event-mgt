@@ -43,7 +43,7 @@ import { Camera } from '@ionic-native/camera';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     EventProvider,
-    ProfileProvider, 
+    ProfileProvider,
     Camera
   ]
 })
