@@ -18,7 +18,7 @@ import { Camera } from '@ionic-native/camera';
 export class GuestCreatePage {
   public eventKey: string = '';
   public eventPrice: number = 0;
-  public guestPicture = null;
+  public guestPicture: string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public eventProvider: EventProvider, public camera: Camera, public actionSheetCtrl: ActionSheetController) {
   }
