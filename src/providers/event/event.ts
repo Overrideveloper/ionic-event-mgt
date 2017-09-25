@@ -99,7 +99,7 @@ public eventListRef: firebase.database.Reference;
           .putString(guestPicture, 'base64', { contentType: 'image/png' })
             .then( savedPicture => {
               this.eventListRef.child(`${eventId}/guestList/${guestId}/profileImage`)
-                .set(savedPicture.downloadURL);
+                .update(savedPicture.downloadURL);
           });
       }
     } 
